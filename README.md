@@ -2,10 +2,12 @@
 
 Edmond is simple JavaScript router for web applications. Although Edmond was originally designed for use in the browser, it can also be used with Node.js.
 
+### Features
+
 * Edmond has **no dependencies**
-* **AMD compatible**, you can load Edmond via [RequireJS](https://github.com/jrburke/requirejs)
-* Ultra lightweight, compressed Edmond has **under 1 KB**
-* Fully **documented**
+* **AMD compatible**, you can load it via [RequireJS](https://github.com/jrburke/requirejs)
+* Ultra lightweight, **under 1 KB**
+* Fully **documented**
 
 ## Quick Start
 
