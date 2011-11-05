@@ -175,6 +175,10 @@
   // Export
   if ( typeof module !== 'undefined' && module.exports ) {
     module.exports = Edmond;
+  } else if ( typeof define !== 'undefined' ) {
+    define(function() {
+      return Edmond;
+    });
   } else {
     this.Edmond = Edmond;
   }
