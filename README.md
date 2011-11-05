@@ -51,7 +51,7 @@ Releases are available for download from GitHub.
 
 | **Version** | **Description** | **Size** | **Action** |
 |:------------|:----------------|:---------|:-----------|
-| `edmond.js` | *uncompressed, with comments* | 1 KB | [Download](https://raw.github.com/Baggz/Edmond/master/src/edmond.js |
+| `edmond.js` | *uncompressed, with comments* | 1 KB | [Download](https://raw.github.com/Baggz/Edmond/master/src/edmond.js) |
 | `edmond.min.js` | *compressed, without comments* | 1 KB | [Download](https://raw.github.com/Baggz/Edmond/master/dist/edmond.min.js) |
 
 <a name="tips"></a>
