@@ -102,10 +102,15 @@ exports['Test ‘request.query’'] = function(test) {
     test.equal(request.query.a, 'b');
   });
 
-    myRouter.dispatchRoute('/users/123?a=b');
-  myRouter.dispatchRoute('/users/123/?a=b');
-    myRouter.dispatchRoute('/users/123?a=b#a');
-  myRouter.dispatchRoute('/users/123/?a=b#a');
+  [
+    '/users/123?a=b',
+    '/users/123/?a=b',
+    '/users/123?a=b#a',
+    '/users/123/?a=b#a'
+  ].forEach(function(route) {
+    myRouter.dispatchRoute(route);
+  });
+
   test.done();
 
 };
@@ -120,10 +125,14 @@ exports['Test ‘request.hash’'] = function(test) {
   });
 
 
-  myRouter.dispatchRoute('/users/123?a=b#a');
-  myRouter.dispatchRoute('/users/123/?a=b#a');
-  myRouter.dispatchRoute('/users/123/#a');
-  myRouter.dispatchRoute('/users/123#a');
+  [
+    '/users/123?a=b#a',
+    '/users/123/?a=b#a',
+    '/users/123/#a',
+    '/users/123#a'
+  ].forEach(function(route) {
+    myRouter.dispatchRoute(route);
+  });
 
   test.done();
 
@@ -139,9 +148,13 @@ exports['Test ‘Edmond.on’'] = function(test) {
     c++;
   });
 
-  myRouter.dispatchRoute('/nonexisting/123?a=b#a');
-  myRouter.dispatchRoute('/asd/?a=b#a');
-  myRouter.dispatchRoute('/usadsadrs/123/#a');
+  [
+    '/nonexisting/123?a=b#a',
+    '/asd/?a=b#a',
+    '/usadsadrs/123/#a'
+  ].forEach(function(route) {
+    myRouter.dispatchRoute(route);
+  });
 
   test.equal(c, 4);
   test.done();
