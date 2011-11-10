@@ -14,7 +14,7 @@
    */
   var dispatchEvent = function(type, message) {
     var eventListeners = listeners[type] || [];
-    for (var i = eventListeners.length; i; i < len; i--) {
+    for (var i = eventListeners.length; i; i--) {
       eventListeners[i](message);
     }
   };
