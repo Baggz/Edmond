@@ -165,7 +165,8 @@ myRouter.on('error', function(message) {
     filter: 'recent'
   },
   path: '/users/123/delete?filter=recent#top'
-  hash: '#top'
+  hash: '#top',
+  route: '/users/:id/:action'
 }
 ```
 
