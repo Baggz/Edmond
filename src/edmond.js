@@ -13,10 +13,9 @@
    * @param {string} type
    */
   var dispatchEvent = function(type, message) {
-    if ( listeners[type] ) {
-      return listeners[type].forEach(function(listener) {
-        return listener(message);
-      });
+    var eventListeners = listeners[type] || [];
+    for (var i = eventListeners.length; i; i < len; i--) {
+      eventListeners[i](message);
     }
   };
 
@@ -26,9 +25,6 @@
    * @constructor
    */
   var Edmond = function() {
-
-    // Refeences to this
-    var self = this;
 
     // This is where all the routes live
     this.routes = [];
@@ -80,7 +76,9 @@
   Edmond.prototype.dispatchRoute = function(path) {
 
     // Fire all event listeners
-    dispatchEvent('dispatch', path);
+    dispatchEvent('dispatch', {
+      path: path
+    });
 
     // The choosen route
     var route = null,
@@ -96,7 +94,10 @@
 
     // If route was not found
     if ( !route ) {
-      return dispatchEvent('error', 404);
+      return dispatchEvent('error', {
+        path: path,
+        error: 404
+      });
     }
 
     /**
