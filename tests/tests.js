@@ -1,14 +1,10 @@
 // Načteme Edmonda
-var Edmond = require('../src/edmond.js');
-var myRouter = new Edmond();
+var edmond = require('../src/edmond.js');
 
 /**
  * Test route matching
  */
 exports['Test route matching'] = function(test) {
-  
-  // Vytvoříme si novou instanci Edmonda  
-  var myRouter1 = new Edmond();
 
   var a = 1;
 
@@ -27,13 +23,13 @@ exports['Test route matching'] = function(test) {
     a++;
   };
 
-  myRouter1.addRoute('/users/', fn1);
-  myRouter1.addRoute('/users/:id', fn2);
-  myRouter1.addRoute('/users/:id/:action', fn3);
+  edmond.addRoute('/users/', fn1);
+  edmond.addRoute('/users/:id', fn2);
+  edmond.addRoute('/users/:id/:action', fn3);
 
-  myRouter1.dispatchRoute('/users/');
-  myRouter1.dispatchRoute('/users/123');
-  myRouter1.dispatchRoute('/users/123/delete');
+  edmond.dispatchRoute('/users/');
+  edmond.dispatchRoute('/users/123');
+  edmond.dispatchRoute('/users/123/delete');
 
   test.equal(a, 4);
   test.done();
@@ -46,22 +42,22 @@ exports['Test route matching'] = function(test) {
 exports['Test ‘request.params’'] = function(test) {
 
   var a = 1;
-  myRouter.addRoute('/users/:id', function(request) {
+  edmond.addRoute('/posts/:id', function(request) {
     test.equal(request.params.id, 123);
     a++;
   });
 
   [
-    '/users/123',
-    '/users/123/',
-    '/users/123?a=b',
-    '/users/123/?a=b',
-    '/users/123#a',
-    '/users/123/#a',
-    '/users/123?a=b#a',
-    '/users/123/?a=b#a'
+    '/posts/123',
+    '/posts/123/',
+    '/posts/123?a=b',
+    '/posts/123/?a=b',
+    '/posts/123#a',
+    '/posts/123/#a',
+    '/posts/123?a=b#a',
+    '/posts/123/?a=b#a'
   ].forEach(function(route) {
-    myRouter.dispatchRoute(route);
+    edmond.dispatchRoute(route);
   });
 
   test.equal(a, 9);
@@ -69,23 +65,23 @@ exports['Test ‘request.params’'] = function(test) {
 
   var b =1;
 
-  myRouter.addRoute('/users/:id/:action', function(request) {
+  edmond.addRoute('/articles/:id/:action', function(request) {
     test.equal(request.params.id, 123);
     test.equal(request.params.action, 'delete');
     b++;
   });
 
   [
-    '/users/123/delete',
-    '/users/123/delete/',
-    '/users/123/delete?a=b',
-    '/users/123/delete/?a=b',
-    '/users/123/delete#a',
-    '/users/123/delete/#a',
-    '/users/123/delete?a=b#a',
-    '/users/123/delete/?a=b#a'    
+    '/articles/123/delete',
+    '/articles/123/delete/',
+    '/articles/123/delete?a=b',
+    '/articles/123/delete/?a=b',
+    '/articles/123/delete#a',
+    '/articles/123/delete/#a',
+    '/articles/123/delete?a=b#a',
+    '/articles/123/delete/?a=b#a'    
   ].forEach(function(route) {
-    myRouter.dispatchRoute(route);
+    edmond.dispatchRoute(route);
   });
 
   test.equal(b, 9);
@@ -98,17 +94,17 @@ exports['Test ‘request.params’'] = function(test) {
  */
 exports['Test ‘request.query’'] = function(test) {
 
-  myRouter.addRoute('/users/:id', function(request) {
+  edmond.addRoute('/commits/:id', function(request) {
     test.equal(request.query.a, 'b');
   });
 
   [
-    '/users/123?a=b',
-    '/users/123/?a=b',
-    '/users/123?a=b#a',
-    '/users/123/?a=b#a'
+    '/commits/123?a=b',
+    '/commits/123/?a=b',
+    '/commits/123?a=b#a',
+    '/commits/123/?a=b#a'
   ].forEach(function(route) {
-    myRouter.dispatchRoute(route);
+    edmond.dispatchRoute(route);
   });
 
   test.done();
@@ -120,18 +116,18 @@ exports['Test ‘request.query’'] = function(test) {
  */
 exports['Test ‘request.hash’'] = function(test) {
 
-  myRouter.addRoute('/users/:id', function(request) {
+  edmond.addRoute('/tasks/:id', function(request) {
     test.equal(request.hash, 'a');
   });
 
 
   [
-    '/users/123?a=b#a',
-    '/users/123/?a=b#a',
-    '/users/123/#a',
-    '/users/123#a'
+    '/tasks/123?a=b#a',
+    '/tasks/123/?a=b#a',
+    '/tasks/123/#a',
+    '/tasks/123#a'
   ].forEach(function(route) {
-    myRouter.dispatchRoute(route);
+    edmond.dispatchRoute(route);
   });
 
   test.done();
@@ -144,7 +140,7 @@ exports['Test ‘request.hash’'] = function(test) {
 exports['Test ‘Edmond.on’'] = function(test) {
 
   var c = 1;
-  myRouter.on('error', function() {
+  edmond.on('error', function() {
     c++;
   });
 
@@ -153,7 +149,7 @@ exports['Test ‘Edmond.on’'] = function(test) {
     '/asd/?a=b#a',
     '/usadsadrs/123/#a'
   ].forEach(function(route) {
-    myRouter.dispatchRoute(route);
+    edmond.dispatchRoute(route);
   });
 
   test.equal(c, 4);

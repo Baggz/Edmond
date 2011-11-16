@@ -11,36 +11,30 @@ Edmond is simple JavaScript router for web applications. Although Edmond was ori
 
 ## Quick Start
 
-1. Create a new instance of Edmond
+1. Add a new route
 
     ```javascript
-    var myRouter = new Edmond();
-    ```
-
-2. Add a new route
-
-    ```javascript
-    myRouter.addRoute('/users/:id', function(request) {
+    edmond.addRoute('/users/:id', function(request) {
 
       // Do something...
 
     });
     ```
 
-3. Listen to the ‘error’ event
+2. Listen to the ‘error’ event
 
     ```javascript
-    myRouter.on('error', function(message) {
+    edmond.on('error', function(message) {
 
       // Do something...
 
     });
     ```
 
-4. Dispatch the route
+3. Dispatch the route
 
     ```javascript
-    myRouter.dispatchRoute('/users/123');
+    edmond.dispatchRoute('/users/123');
     ```
 
     *Please see the [Tips](#tips) section for more information about implementing HTML5 history.*
@@ -63,14 +57,14 @@ Releases are available for download from GitHub.
 
     ```javascript
     window.addEventListener('popState', function() {
-      myRouter.dispatchRoute(window.location.pathname);
+      edmond.dispatchRoute(window.location.pathname);
     });
     ```
 
 2. Secondly, add a new event listener to the `dispatch` event
 
     ```javascript
-    myRouter.on('dispatch', function(path) {
+    edmond.on('dispatch', function(path) {
       history.pushState({}, null, path);
     });
     ```
@@ -99,7 +93,7 @@ The callback `fn` gets two arguments `request` and `next` where `request` is a `
 **Example**
 
 ```javascript
-myRouter.addRoute('/users/:username', function(request, next) {
+edmond.addRoute('/users/:username', function(request, next) {
 
   alert('Hello ' + request.username + '!');
 
@@ -114,7 +108,7 @@ myRouter.addRoute('/users/:username', function(request, next) {
 **Example**
 
 ```javascript
-myRouter.dispatchRoute('/users/123/delete');
+edmond.dispatchRoute('/users/123/delete');
 ```
 
 <a name="on"></a>
@@ -130,7 +124,7 @@ myRouter.dispatchRoute('/users/123/delete');
 **Example**
 
 ```javascript
-myRouter.on('error', function(message) {
+edmond.on('error', function(message) {
 
   // Do something...
 
