@@ -1,5 +1,7 @@
 # Edmond
 
+[![Build Status](https://secure.travis-ci.org/Baggz/Edmond.png)](http://travis-ci.org/Baggz/Edmond)
+
 Edmond is simple JavaScript router for web applications. Although Edmond was originally designed for use in the browser, it can also be used with Node.js.
 
 ### Features
@@ -56,8 +58,8 @@ Releases are available for download from GitHub.
 1. First of all, we need to add a new event listener
 
     ```javascript
-    window.addEventListener('popState', function() {
-      edmond.dispatchRoute(window.location.pathname);
+    window.addEventListener('popstate', function() {
+      edmond.dispatchRoute(window.location.pathname + window.location.search);
     });
     ```
 
